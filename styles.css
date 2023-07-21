@@ -1,0 +1,158 @@
+/* Global styles */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  background-color: rgb(50, 50, 50);
+}
+
+/* Site container */
+.siteContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+  color: greenyellow;
+  background: none transparent;
+  margin: 0;
+  transform-style: preserve-3d;
+}
+
+/* Video container */
+.videoContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* WebGL container */
+.webglContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Hologram */
+.hologram {
+  position: absolute;
+  padding: 50px;
+  text-align: center;
+  background: rgba(0, 113, 0, 0.8);
+  border: 1px solid rgba(0, 255, 0, 0.5);
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+  transform-style: preserve-3d;
+  transition: transform 0.1s linear;
+}
+
+/* Background video */
+.bgvideo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Blurred */
+.blurred {
+  position: absolute;
+  align-self: center;
+  filter: blur(30px);
+  scale: 110%;
+  opacity: 1;
+}
+
+/* Camera */
+#camera {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Content */
+#content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Background */
+#background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform:translate3d(0px,0px,-1000px);
+  z-index:-1;
+}
+
+/* Viewport */
+#viewport {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  z-index: 999;
+}
+
+/* Navigation */
+nav {
+  transform-style: preserve-3d;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  transform-style: preserve-3d;
+}
+
+nav ul li {
+  display: inline-block;
+  transform-style: preserve-3d;
+}
+
+nav ul li a {
+  color: #0f0;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+nav ul li a:hover {
+}
+
+/* Button */
+.button {
+  transition: transform 0.3s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+.button:hover {
+  transition: transform 0.3s ease-in-out;
+  transform-style: preserve-3d;
+  transform: translateZ(80px) !important;
+}
+
+/* Site */
+#site {
+  position: absolute;
+  width: 1280px;
+  height: 720px;
+  transform-style: preserve-3d;
+  transform: scale(0.7); /* Fallback for browsers that don't support transform-style */
+  transform-origin: center center; /* Fallback for browsers that don't support transform-origin */
+}
+
+/* Fallback for browsers that don't support mask-image */
+.feathered {
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 78%, rgba(0, 0, 0, -1) 88%);
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 82%);
+}

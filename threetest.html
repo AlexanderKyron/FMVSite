@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FMV Web Page</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div id="container" style="position: relative; width: 100%; height: 100%;">
+        <div id="site"
+            style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; transform-origin: center center; ">
+            <div id="viewport">
+                <div id="camera">
+                    <div id="content">
+                        <div id="webglContainer"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="background"></div>
+        </div>
+    </div>
+
+
+    <script src="globalSettings.js"></script>
+    <script src="pageResizer.js"></script>
+    <script src="hologramParallaxer.js"></script>
+    <script src="videoManager.js"></script>
+
+    <script>
+        //Setup page resizer
+
+        const pageResizer = new PageResizer();
+        pageResizer.init();
+
+        //Setup hologram parallaxer 
+
+        const hologramParallaxer = new HologramParallaxer();
+        hologramParallaxer.init();
+
+        //Setup video manager
+        const videoManager = new VideoManager();
+        
+        // Load your JSON data
+        fetch('videos.json')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+
+                videoManager.loadRawVideoData(data);
+                videoManager.playVideo(data.startVideo);
+
+            });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+
+var globalSettings = {
+    "fancyBackground": false
+}

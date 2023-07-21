@@ -1,0 +1,63 @@
+{
+  "startVideo": "Video1",
+  "videos":
+[ 
+    {
+    "created": false,
+      "name": "Video1",
+      "url": "videos/SampleVideo_1280x720_5mb.mp4",
+      "freezeFrameUrl": "freeze1.jpg",
+      "startEndTimestamps": {
+        "start": 0,
+        "end":2,
+        "showPage": 2
+      },
+      "possibleTransitions": ["Video2"],
+      "overlaidWebPage": {
+        "url": "hologrampagetest.html",
+        "position": { "x": -150, "y": -150, "z": 0 },
+        "scale": { "x": 1, "y": 1, "z": 1 },
+        "rotation": { "x": 0, "y": 0, "z": 0 }
+      },
+      "videoEvents": [
+        {
+          "name": "Event1",
+          "functionName": "function1",
+          "parameters": {
+            "param1": "value1",
+            "param2": "value2"
+          }
+        }
+      ]
+    },
+    {
+        "created": false,
+          "name": "Video2",
+          "url": "videos/sample-5s.mp4",
+          "freezeFrameUrl": "freeze1.jpg",
+          "startEndTimestamps": {
+            "start": 2,
+            "end":3,
+            "showPage": 2.5
+          },
+          "possibleTransitions": ["Video1"],
+          "overlaidWebPage": {
+            "url": "hologramsecondpagetest.html",
+            "position": { "x": 200, "y": 20, "z": 0 },
+            "scale": { "x": 1, "y": 1, "z": 1 },
+            "rotation": { "x": 0, "y": -10, "z": 0 }
+          },
+          "videoEvents": [
+            {
+              "name": "Event1",
+              "functionName": "function1",
+              "parameters": {
+                "param1": "value1",
+                "param2": "value2"
+              }
+            }
+          ]
+        }
+  ]
+}
+  
