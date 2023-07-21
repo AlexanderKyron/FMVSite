@@ -60,8 +60,8 @@ class VideoManager {
             video.style.display = "none";
             //video.load();
 
-            video.play();
-            setTimeout(function () { video.pause(); }, 100);
+           //video.play();
+           // setTimeout(function () { video.pause(); }, 100);
 
             vidCont.appendChild(video);
 
@@ -78,8 +78,8 @@ class VideoManager {
                 blurredVideo.style.display = "none";
 
                 //blurredVideo.load();
-                blurredVideo.play();
-                setTimeout(function () { blurredVideo.pause(); }, 100);
+               // blurredVideo.play();
+               // setTimeout(function () { blurredVideo.pause(); }, 100);
                 // blurredVideo.pause();
 
                 vidCont.appendChild(blurredVideo);
@@ -169,7 +169,8 @@ class VideoManager {
 
         }, 100);
 
-
+        // Keep track of which events have already been triggered
+        let triggeredEvents = new Map();
 
         // Wait for the "end" timestamp as defined in the data
         const endTimestamp = videoData.startEndTimestamps.end;
@@ -180,9 +181,12 @@ class VideoManager {
                 videoElement.pause();
                 blurredVideoElement.pause();
 
-
+                triggeredEvents = new Map();
                 //const freezeFrame = $('<img>').attr('src', freezeFrameImg.src);
                 //freezeFrame.appendTo($('#videoContainer'));
+            }
+            if (videoElement.currentTime < videoData.startEndTimestamps.start) {
+                triggeredEvents = new Map();
             }
             if (videoElement.currentTime >= pageTimestamp) {
                 var elements = Array.from(document.getElementsByClassName("hologram"));
@@ -199,6 +203,26 @@ class VideoManager {
                 overlaidWebPageDiv.style.zIndex = "9999";
 
             }
+            // Loop through all events
+            videoData.videoEvents.forEach(event => {
+                const eventTimestamp = event.timestamp;
+
+                // Check if the event should be triggered
+                if (videoElement.currentTime >= eventTimestamp && videoElement.currentTime < endTimestamp && !triggeredEvents.get(event.name)) {
+                    // Check if the function exists
+                    if (typeof window[event.functionName] === 'function') {
+                        // Call the function by name and pass the parameters object
+                        window[event.functionName](event.parameters);
+
+                        // Mark the event as triggered
+                        triggeredEvents.set(event.name, true);
+                        
+                    } else {
+                        // Log an error if the function does not exist
+                        console.error(`Function ${event.functionName} does not exist`);
+                    }
+                }
+            });
         });
     }
 }
